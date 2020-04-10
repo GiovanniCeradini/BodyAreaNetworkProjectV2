@@ -1,0 +1,8 @@
+<layout>
+<androidx.recyclerview.widget.RecyclerView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/recycler_view_prova"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    />
+</layout>
