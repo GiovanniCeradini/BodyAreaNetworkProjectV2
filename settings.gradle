@@ -1,2 +1,2 @@
-include ':app'
+include ':app', ':wgcom'
 rootProject.name='prova_tirocinio'
