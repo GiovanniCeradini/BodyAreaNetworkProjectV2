@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">Wagoo Glasses Communication Library</string>
+    <string name="title_activity_update">UpdateActivity</string>
+</resources>

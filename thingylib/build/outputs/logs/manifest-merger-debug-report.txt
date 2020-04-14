@@ -1,0 +1,53 @@
+-- Merging decision tree log ---
+manifest
+ADDED from C:\Users\nicol\AndroidStudioProjects\prova_tirocinio\thingylib\src\main\AndroidManifest.xml:39:1-50:12
+INJECTED from C:\Users\nicol\AndroidStudioProjects\prova_tirocinio\thingylib\src\main\AndroidManifest.xml:39:1-50:12
+INJECTED from C:\Users\nicol\AndroidStudioProjects\prova_tirocinio\thingylib\src\main\AndroidManifest.xml:39:1-50:12
+INJECTED from C:\Users\nicol\AndroidStudioProjects\prova_tirocinio\thingylib\src\main\AndroidManifest.xml:39:1-50:12
+INJECTED from C:\Users\nicol\AndroidStudioProjects\prova_tirocinio\thingylib\src\main\AndroidManifest.xml:39:1-50:12
+INJECTED from C:\Users\nicol\AndroidStudioProjects\prova_tirocinio\thingylib\src\main\AndroidManifest.xml:39:1-50:12
+INJECTED from C:\Users\nicol\AndroidStudioProjects\prova_tirocinio\thingylib\src\main\AndroidManifest.xml:39:1-50:12
+	package
+		ADDED from C:\Users\nicol\AndroidStudioProjects\prova_tirocinio\thingylib\src\main\AndroidManifest.xml:40:5-46
+		INJECTED from C:\Users\nicol\AndroidStudioProjects\prova_tirocinio\thingylib\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\nicol\AndroidStudioProjects\prova_tirocinio\thingylib\src\main\AndroidManifest.xml
+	android:versionName
+		INJECTED from C:\Users\nicol\AndroidStudioProjects\prova_tirocinio\thingylib\src\main\AndroidManifest.xml
+		ADDED from C:\Users\nicol\AndroidStudioProjects\prova_tirocinio\thingylib\src\main\AndroidManifest.xml:39:1-50:12
+		INJECTED from C:\Users\nicol\AndroidStudioProjects\prova_tirocinio\thingylib\src\main\AndroidManifest.xml
+	android:versionCode
+		INJECTED from C:\Users\nicol\AndroidStudioProjects\prova_tirocinio\thingylib\src\main\AndroidManifest.xml
+		ADDED from C:\Users\nicol\AndroidStudioProjects\prova_tirocinio\thingylib\src\main\AndroidManifest.xml:39:1-50:12
+		INJECTED from C:\Users\nicol\AndroidStudioProjects\prova_tirocinio\thingylib\src\main\AndroidManifest.xml
+	xmlns:android
+		ADDED from C:\Users\nicol\AndroidStudioProjects\prova_tirocinio\thingylib\src\main\AndroidManifest.xml:39:11-69
+uses-permission#android.permission.BLUETOOTH
+ADDED from C:\Users\nicol\AndroidStudioProjects\prova_tirocinio\thingylib\src\main\AndroidManifest.xml:42:5-68
+	android:name
+		ADDED from C:\Users\nicol\AndroidStudioProjects\prova_tirocinio\thingylib\src\main\AndroidManifest.xml:42:22-65
+uses-permission#android.permission.FOREGROUND_SERVICE
+ADDED from C:\Users\nicol\AndroidStudioProjects\prova_tirocinio\thingylib\src\main\AndroidManifest.xml:43:5-77
+	android:name
+		ADDED from C:\Users\nicol\AndroidStudioProjects\prova_tirocinio\thingylib\src\main\AndroidManifest.xml:43:22-74
+application
+ADDED from C:\Users\nicol\AndroidStudioProjects\prova_tirocinio\thingylib\src\main\AndroidManifest.xml:45:5-49:19
+service#no.nordicsemi.android.thingylib.dfu.DfuService
+ADDED from C:\Users\nicol\AndroidStudioProjects\prova_tirocinio\thingylib\src\main\AndroidManifest.xml:46:9-48:40
+	android:exported
+		ADDED from C:\Users\nicol\AndroidStudioProjects\prova_tirocinio\thingylib\src\main\AndroidManifest.xml:48:13-37
+	android:name
+		ADDED from C:\Users\nicol\AndroidStudioProjects\prova_tirocinio\thingylib\src\main\AndroidManifest.xml:47:13-43
+uses-sdk
+INJECTED from C:\Users\nicol\AndroidStudioProjects\prova_tirocinio\thingylib\src\main\AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from C:\Users\nicol\AndroidStudioProjects\prova_tirocinio\thingylib\src\main\AndroidManifest.xml
+INJECTED from C:\Users\nicol\AndroidStudioProjects\prova_tirocinio\thingylib\src\main\AndroidManifest.xml
+INJECTED from C:\Users\nicol\AndroidStudioProjects\prova_tirocinio\thingylib\src\main\AndroidManifest.xml
+INJECTED from C:\Users\nicol\AndroidStudioProjects\prova_tirocinio\thingylib\src\main\AndroidManifest.xml
+	android:targetSdkVersion
+		INJECTED from C:\Users\nicol\AndroidStudioProjects\prova_tirocinio\thingylib\src\main\AndroidManifest.xml
+		ADDED from C:\Users\nicol\AndroidStudioProjects\prova_tirocinio\thingylib\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\nicol\AndroidStudioProjects\prova_tirocinio\thingylib\src\main\AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from C:\Users\nicol\AndroidStudioProjects\prova_tirocinio\thingylib\src\main\AndroidManifest.xml
+		ADDED from C:\Users\nicol\AndroidStudioProjects\prova_tirocinio\thingylib\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\nicol\AndroidStudioProjects\prova_tirocinio\thingylib\src\main\AndroidManifest.xml

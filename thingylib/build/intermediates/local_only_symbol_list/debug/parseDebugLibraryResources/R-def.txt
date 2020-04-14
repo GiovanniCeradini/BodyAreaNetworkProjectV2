@@ -1,0 +1,8 @@
+R_DEF: Internal format may change without notice
+local
+drawable ic_developer_board_white
+string thingy_error_mtu_failed
+string thingy_error_service_not_bound
+string thingy_not_configured
+string thingy_not_connected
+string thingy_please_wait

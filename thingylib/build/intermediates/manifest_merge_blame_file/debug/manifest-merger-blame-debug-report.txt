@@ -1,0 +1,67 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<!--
+3  ~ Copyright (c) 2010 - 2017, Nordic Semiconductor ASA
+4  ~ All rights reserved.
+5  ~
+6  ~ Redistribution and use in source and binary forms, with or without modification,
+7  ~ are permitted provided that the following conditions are met:
+8  ~
+9  ~ 1. Redistributions of source code must retain the above copyright notice, this
+10  ~    list of conditions and the following disclaimer.
+11  ~
+12  ~ 2. Redistributions in binary form, except as embedded into a Nordic
+13  ~    Semiconductor ASA integrated circuit in a product or a software update for
+14  ~    such product, must reproduce the above copyright notice, this list of
+15  ~    conditions and the following disclaimer in the documentation and/or other
+16  ~    materials provided with the distribution.
+17  ~
+18  ~ 3. Neither the name of Nordic Semiconductor ASA nor the names of its
+19  ~    contributors may be used to endorse or promote products derived from this
+20  ~    software without specific prior written permission.
+21  ~
+22  ~ 4. This software, with or without modification, must only be used with a
+23  ~    Nordic Semiconductor ASA integrated circuit.
+24  ~
+25  ~ 5. Any software provided in binary form under this license must not be reverse
+26  ~    engineered, decompiled, modified and/or disassembled.
+27  ~
+28  ~ THIS SOFTWARE IS PROVIDED BY NORDIC SEMICONDUCTOR ASA "AS IS" AND ANY EXPRESS
+29  ~ OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
+30  ~ OF MERCHANTABILITY, NONINFRINGEMENT, AND FITNESS FOR A PARTICULAR PURPOSE ARE
+31  ~ DISCLAIMED. IN NO EVENT SHALL NORDIC SEMICONDUCTOR ASA OR CONTRIBUTORS BE
+32  ~ LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+33  ~ CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE
+34  ~ GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+35  ~ HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+36  ~ LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT
+37  ~ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+38-->
+39<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+40    package="no.nordicsemi.android.thingylib"
+41    android:versionCode="4"
+42    android:versionName="1.1.0" >
+43
+44    <uses-sdk
+45        android:minSdkVersion="18"
+45-->C:\Users\nicol\AndroidStudioProjects\prova_tirocinio\thingylib\src\main\AndroidManifest.xml
+46        android:targetSdkVersion="28" />
+46-->C:\Users\nicol\AndroidStudioProjects\prova_tirocinio\thingylib\src\main\AndroidManifest.xml
+47
+48    <uses-permission android:name="android.permission.BLUETOOTH" />
+48-->C:\Users\nicol\AndroidStudioProjects\prova_tirocinio\thingylib\src\main\AndroidManifest.xml:42:5-68
+48-->C:\Users\nicol\AndroidStudioProjects\prova_tirocinio\thingylib\src\main\AndroidManifest.xml:42:22-65
+49    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+49-->C:\Users\nicol\AndroidStudioProjects\prova_tirocinio\thingylib\src\main\AndroidManifest.xml:43:5-77
+49-->C:\Users\nicol\AndroidStudioProjects\prova_tirocinio\thingylib\src\main\AndroidManifest.xml:43:22-74
+50
+51    <application>
+51-->C:\Users\nicol\AndroidStudioProjects\prova_tirocinio\thingylib\src\main\AndroidManifest.xml:45:5-49:19
+52        <service
+52-->C:\Users\nicol\AndroidStudioProjects\prova_tirocinio\thingylib\src\main\AndroidManifest.xml:46:9-48:40
+53            android:name="no.nordicsemi.android.thingylib.dfu.DfuService"
+53-->C:\Users\nicol\AndroidStudioProjects\prova_tirocinio\thingylib\src\main\AndroidManifest.xml:47:13-43
+54            android:exported="false" />
+54-->C:\Users\nicol\AndroidStudioProjects\prova_tirocinio\thingylib\src\main\AndroidManifest.xml:48:13-37
+55    </application>
+56
+57</manifest>
