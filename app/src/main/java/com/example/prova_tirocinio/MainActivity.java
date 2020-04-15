@@ -4,8 +4,6 @@ import android.os.Bundle;
 
 import com.example.prova_tirocinio.databinding.ActivityMainBinding;
 import com.example.prova_tirocinio.fragments.FragmentProva;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -47,8 +45,8 @@ public class MainActivity extends AppCompatActivity {
         mBinding.fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                final ScannerFragment fragment=new ScannerFragment();
+                mFragmentManager.beginTransaction().replace(R.id.fragment_container,fragment).commit();
             }
         });
     }
