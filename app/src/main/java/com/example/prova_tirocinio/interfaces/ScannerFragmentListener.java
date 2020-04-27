@@ -1,6 +1,6 @@
 package com.example.prova_tirocinio.interfaces;
 
-import com.example.prova_tirocinio.objects.ThingyDevice;
+import com.example.prova_tirocinio.objects.Device;
 
 public interface ScannerFragmentListener {
 
@@ -10,7 +10,7 @@ public interface ScannerFragmentListener {
      * @param device the selected device. May not be null.
      *
      */
-    void onDeviceSelected(ThingyDevice device);
+    void onDeviceSelected(Device device);
 
     void onNothingSelected();
 }

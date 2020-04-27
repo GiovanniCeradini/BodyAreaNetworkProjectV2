@@ -1,54 +1,33 @@
 package com.example.prova_tirocinio;
 
 import android.os.Bundle;
-
-import com.example.prova_tirocinio.databinding.ActivityMainBinding;
-import com.example.prova_tirocinio.fragments.FragmentProva;
-
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.databinding.DataBindingUtil;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-
-import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.example.prova_tirocinio.fragments.MainFragment;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+
 public class MainActivity extends AppCompatActivity {
-
-    private static final String TAG = "MainActivity";
-
-    private ActivityMainBinding mBinding;
-    private FragmentManager mFragmentManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mBinding= DataBindingUtil.setContentView(this,R.layout.activity_main);
+        setContentView(R.layout.activity_main);
 
-        mFragmentManager = getSupportFragmentManager();
-        Fragment fragment=mFragmentManager.findFragmentById(R.id.fragment_container);
+        FragmentManager fm = getSupportFragmentManager();
+        Fragment fragment=fm.findFragmentById(R.id.fragment_container);
+
 
         if(fragment==null){
-            fragment=new FragmentProva();
-            mFragmentManager.beginTransaction().replace(R.id.fragment_container,fragment).commit();
+            fragment=new MainFragment();
+            fm.beginTransaction().replace(R.id.fragment_container,fragment).addToBackStack(null).commit();
         }
         else
-            mFragmentManager.beginTransaction().replace(R.id.fragment_container,fragment).commit();
+            fm.beginTransaction().replace(R.id.fragment_container,fragment).addToBackStack(null).commit();
 
-
-        Toolbar toolbar = mBinding.toolbar;
-        setSupportActionBar(toolbar);
-
-        //FloatingActionButton fab = mBinding.fab;
-        mBinding.fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                final ScannerFragment fragment=new ScannerFragment();
-                mFragmentManager.beginTransaction().replace(R.id.fragment_container,fragment).commit();
-            }
-        });
     }
 
     @Override
