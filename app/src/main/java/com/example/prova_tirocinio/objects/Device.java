@@ -1,7 +1,11 @@
 package com.example.prova_tirocinio.objects;
 
+import android.bluetooth.BluetoothDevice;
+
 import java.util.ArrayList;
 import java.util.List;
+
+import no.nordicsemi.android.support.v18.scanner.ScanResult;
 
 /**
     Classe che rappresenta i device che posso trovare nella scansione, usata per provare
@@ -11,29 +15,48 @@ import java.util.List;
 
 public class Device {
 
-    private String name;
-    private int type;
-
+    private String mName;
+    private int mType;
+    private BluetoothDevice mBluetoothDevice;
+//    private int rssi;
 
     public Device(String name, int type){
-        this.name=name;
-        this.type=type;
+        this.mName=name;
+        this.mType=type;
+    }
+
+    public Device(ScanResult scanResult) {
+        mBluetoothDevice = scanResult.getDevice();
+        this.mName = scanResult.getScanRecord() != null ? scanResult.getScanRecord().getDeviceName() : null;
+//        this.rssi = scanResult.getRssi();
     }
 
     public void setName(String name) {
-        this.name = name;
+        this.mName = name;
     }
 
     public void setType(int type) {
-        this.type = type;
+        this.mType = type;
     }
 
     public String getName() {
-        return name;
+        return mName;
     }
 
     public int getType() {
-        return type;
+        return mType;
+    }
+
+    /**
+     *
+     * @param scanResult
+     * @return true if scanResult.BluetoothDevice equals this.bluetoothDevice
+     */
+    public boolean matchesResultDevice(final ScanResult scanResult) {
+        return this.mBluetoothDevice.getAddress().equals(scanResult.getDevice().getAddress());
+    }
+    public BluetoothDevice getBluetoothDevice() {
+        return this.mBluetoothDevice;
     }
 
     public static List<Device> get10DevicesForTesting(){

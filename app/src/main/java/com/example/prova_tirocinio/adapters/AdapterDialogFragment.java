@@ -3,19 +3,24 @@ package com.example.prova_tirocinio.adapters;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.prova_tirocinio.databinding.ThingyItemBinding;
 import com.example.prova_tirocinio.databinding.WagooItemBinding;
+import com.example.prova_tirocinio.databinding.WatchItemBinding;
 import com.example.prova_tirocinio.objects.Device;
+import com.example.prova_tirocinio.objects.ThingyDevice;
+import com.example.prova_tirocinio.objects.WagooDevice;
+import com.wagoo.wgcom.WagooGlassesInterface;
 
 
 import java.util.List;
+
+import no.nordicsemi.android.support.v18.scanner.ScanResult;
+import no.nordicsemi.android.thingylib.Thingy;
+import no.nordicsemi.android.thingylib.utils.ThingyUtils;
 
 
 /**
@@ -27,11 +32,11 @@ public class AdapterDialogFragment extends RecyclerView.Adapter<RecyclerView.Vie
     private static final int TYPE_WAGOO = 2;
     private static final int TYPE_WATCH = 3;
 
-    private List<Device> devices;
+    private List<Device> mDevices;
 //    private DeviceConnectedClickListener listener;
 
     public AdapterDialogFragment(List<Device> list){
-        this.devices=list;
+        this.mDevices=list;
     }
 
     @NonNull
@@ -63,49 +68,78 @@ public class AdapterDialogFragment extends RecyclerView.Adapter<RecyclerView.Vie
 
         //SMARTWATCH
         else {
-
+            LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
+            WatchItemBinding watchBinding = WatchItemBinding.inflate(layoutInflater, parent, false);
+            return new WatchViewHolder(watchBinding);
         }
-        return null;
     }
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         //THINGY
         if (getItemViewType(position) == TYPE_THINGY){
-            ((ThingyViewdHolder)holder).bind(devices.get(position));
+            ((ThingyViewdHolder)holder).bind(mDevices.get(position));
 
         }
 
         //WAGOO
         else if (getItemViewType(position) == TYPE_WAGOO){
-            ((WagooViewHolder)holder).bind(devices.get(position));
+            ((WagooViewHolder)holder).bind(mDevices.get(position));
         }
 
         //SMARTWATCH
         else {
-
+            ((WatchViewHolder)holder).bind(mDevices.get(position));
         }
     }
 
     @Override
     public int getItemCount() {
-        return devices != null ? devices.size() : 0;
+        return mDevices != null ? mDevices.size() : 0;
     }
 
     @Override
     public int getItemViewType(int position) {
 
         //THINGY
-        if (devices.get(position).getType() == 1)
+        if (mDevices.get(position).getType() == 1)
             return TYPE_THINGY;
 
             //WAGOO
-        else if (devices.get(position).getType() == 2)
+        else if (mDevices.get(position).getType() == 2)
             return TYPE_WAGOO;
 
             //SMARTWATCH
         else
-            return 1;
+            return TYPE_WATCH;
+    }
+
+
+
+    public void update(List<ScanResult> results) {
+        for (final ScanResult result : results) {
+            //TODO cerco se c'è già tra quelli già connessi nella lista che imposterò
+            final Device device = findDevice(result);
+            if (device == null) {
+                if(result.getDevice().getUuids().equals(ThingyUtils.THINGY_BASE_UUID))
+                    mDevices.add(new ThingyDevice(result));
+//                if(result.getDevice().getUuids().equals(WagooGlassesInterface.getUuid()))
+//                    mDevices.add(new WagooDevice(result));
+            } else {
+                //TODO quando avviene questo? cosa vuol dire la prima riga? ci serve o no l'rssi senno lo togliamo -> toglibile
+                device.setName(result.getScanRecord() != null ? result.getScanRecord().getDeviceName() : null);
+//                device.setRssi(result.getRssi());
+            }
+        }
+        notifyDataSetChanged();
+    }
+
+    private Device findDevice(final ScanResult result) {
+        for (final Device device : mDevices){
+            if (device.matchesResultDevice(result))
+                return device;
+            }
+        return null;
     }
 
 
@@ -168,7 +202,41 @@ public class AdapterDialogFragment extends RecyclerView.Adapter<RecyclerView.Vie
         public void bind(Device wagooDevice) {
             this.mWagooDevice=mWagooDevice;
             mWagooItemBinding.executePendingBindings();
-          mWagooItemBinding.setDevice(wagooDevice);
+            mWagooItemBinding.setDevice(wagooDevice);
+        }
+
+
+        @Override
+        public void onClick(View view) {
+
+        }
+
+        @Override
+        public boolean onLongClick(View view) {
+            return false;
+        }
+    }
+
+    /**
+     ViewHolder per lo smartwatch in caso
+     */
+
+    public class WatchViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener,View.OnLongClickListener{
+
+        private Device mWatchDevice;
+        private WatchItemBinding mWatchItemBinding;
+
+
+
+        public WatchViewHolder(WatchItemBinding binding) {
+            super(binding.getRoot());
+            this.mWatchItemBinding = binding;
+        }
+
+        public void bind(Device watchDevice) {
+            this.mWatchDevice=watchDevice;
+            mWatchItemBinding.executePendingBindings();
+            mWatchItemBinding.setDevice(watchDevice);
         }
 
 

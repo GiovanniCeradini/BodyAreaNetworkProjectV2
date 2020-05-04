@@ -1,32 +1,63 @@
 package com.example.prova_tirocinio;
 
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 
+import com.example.prova_tirocinio.databinding.ActivityMainBinding;
 import com.example.prova_tirocinio.fragments.MainFragment;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
 public class MainActivity extends AppCompatActivity {
 
+    private FloatingActionButton fabAddDevice;
+    private ActivityMainBinding mainBinding;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        mainBinding= DataBindingUtil.setContentView(this,R.layout.activity_main);
+
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+//
+//        PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
+//
+
+
 
         FragmentManager fm = getSupportFragmentManager();
-        Fragment fragment=fm.findFragmentById(R.id.fragment_container);
 
+        fabAddDevice=mainBinding.addThingyDevice;
 
-        if(fragment==null){
-            fragment=new MainFragment();
-            fm.beginTransaction().replace(R.id.fragment_container,fragment).addToBackStack(null).commit();
-        }
-        else
-            fm.beginTransaction().replace(R.id.fragment_container,fragment).addToBackStack(null).commit();
+        fabAddDevice.setOnClickListener(v -> {
+            fabAddDevice.hide();
+            Fragment thingyAddFragment = new MainFragment();
+            fm.beginTransaction().replace(R.id.fragment_container, thingyAddFragment).addToBackStack(null).commit();
+        });
+
+        fm.addOnBackStackChangedListener(() -> {
+            if (fm.getBackStackEntryCount() == 0) {
+                fabAddDevice.show();
+//                getSupportActionBar().setTitle("Signal Server - Paziente");
+                getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+            }
+        });
+//        if(fragment==null){
+//            fragment=new MainFragment();
+//            fm.beginTransaction().replace(R.id.fragment_container,fragment).addToBackStack(null).commit();
+//        }
+//        else
+//            fm.beginTransaction().replace(R.id.fragment_container,fragment).addToBackStack(null).commit();
 
     }
 
@@ -46,7 +77,9 @@ public class MainActivity extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
-            return true;
+            fabAddDevice.hide();
+            Fragment fragment=new MainFragment();
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, fragment).addToBackStack(null).commit();
         }
 
         return super.onOptionsItemSelected(item);

@@ -25,6 +25,10 @@ android {
     dataBinding{
         enabled=true
     }
+    compileOptions {
+        sourceCompatibility = 1.8
+        targetCompatibility = 1.8
+    }
 }
 
 dependencies {
@@ -38,4 +42,5 @@ dependencies {
     compile project(path: ':thingylib')
     compile project(path: ':wgcom')
     implementation 'androidx.recyclerview:recyclerview:1.2.0-alpha01'
+    implementation 'no.nordicsemi.android.support.v18:scanner:1.4.0'
 }

@@ -14,6 +14,7 @@ import androidx.fragment.app.Fragment;
 
 import com.example.prova_tirocinio.R;
 import com.example.prova_tirocinio.databinding.FragmentMainBinding;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class MainFragment extends Fragment {
 
@@ -46,4 +47,6 @@ public class MainFragment extends Fragment {
 
         return v;
     }
+
+
 }
