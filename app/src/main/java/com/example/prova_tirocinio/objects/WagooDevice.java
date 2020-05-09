@@ -21,5 +21,8 @@ public class WagooDevice extends Device{
     }
 
 
+    public WagooDevice(BluetoothDevice device, int rssi) {
+        super(device,rssi,WAGOO_TYPE);
+    }
 }
 

@@ -1,15 +1,11 @@
 package com.example.prova_tirocinio;
 
+import android.Manifest;
+import android.bluetooth.BluetoothAdapter;
+import android.content.Intent;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
-
-import com.example.prova_tirocinio.databinding.ActivityMainBinding;
-import com.example.prova_tirocinio.fragments.MainFragment;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -17,10 +13,20 @@ import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
-public class MainActivity extends AppCompatActivity {
+import com.example.prova_tirocinio.Ble_stuff.ScannerActivity;
+import com.example.prova_tirocinio.databinding.ActivityMainBinding;
+import com.example.prova_tirocinio.fragments.MainFragment;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
+public class MainActivity extends AppCompatActivity{
 
     private FloatingActionButton fabAddDevice;
     private ActivityMainBinding mainBinding;
+
+    private BluetoothAdapter mBluetoothAdapter  = null;
+    private final static int REQUEST_PERMISSION_REQ_CODE = 76; // any 8-bit number
+    public static final int REQUEST_BT_PERMISSIONS = 0;
+    public static final int REQUEST_BT_ENABLE = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,17 +38,19 @@ public class MainActivity extends AppCompatActivity {
 //
 //        PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
 //
-
-
-
         FragmentManager fm = getSupportFragmentManager();
 
         fabAddDevice=mainBinding.addThingyDevice;
 
         fabAddDevice.setOnClickListener(v -> {
             fabAddDevice.hide();
-            Fragment thingyAddFragment = new MainFragment();
-            fm.beginTransaction().replace(R.id.fragment_container, thingyAddFragment).addToBackStack(null).commit();
+//            Fragment thingyAddFragment = new MainFragment();
+//            fm.beginTransaction().replace(R.id.fragment_container, thingyAddFragment).addToBackStack(null).commit();
+            Intent intent = new Intent(this, ScannerActivity.class);
+//            EditText editText = (EditText) findViewById(R.id.editText);
+//            String message = editText.getText().toString();
+//            intent.putExtra(EXTRA_MESSAGE, message);
+            startActivity(intent);
         });
 
         fm.addOnBackStackChangedListener(() -> {
@@ -52,12 +60,11 @@ public class MainActivity extends AppCompatActivity {
                 getSupportActionBar().setDisplayHomeAsUpEnabled(false);
             }
         });
-//        if(fragment==null){
-//            fragment=new MainFragment();
-//            fm.beginTransaction().replace(R.id.fragment_container,fragment).addToBackStack(null).commit();
-//        }
-//        else
-//            fm.beginTransaction().replace(R.id.fragment_container,fragment).addToBackStack(null).commit();
+
+        this.mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
+
+        checkBtPermissions();
+        enableBt();
 
     }
 
@@ -84,4 +91,23 @@ public class MainActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+    public void checkBtPermissions() {
+        this.requestPermissions(
+                new String[]{
+                        Manifest.permission.BLUETOOTH, Manifest.permission.BLUETOOTH_ADMIN
+                },
+                REQUEST_BT_PERMISSIONS);
+    }
+
+    public void enableBt(){
+        if (mBluetoothAdapter == null) {
+            // Device does not support Bluetooth
+        }
+        if (!mBluetoothAdapter.isEnabled()) {
+            Intent enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
+            startActivityForResult(enableBtIntent, REQUEST_BT_ENABLE);
+        }
+    }
+
 }

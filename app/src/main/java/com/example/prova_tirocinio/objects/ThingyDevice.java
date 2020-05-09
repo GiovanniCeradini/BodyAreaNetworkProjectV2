@@ -1,5 +1,7 @@
 package com.example.prova_tirocinio.objects;
 
+import android.bluetooth.BluetoothDevice;
+
 import no.nordicsemi.android.support.v18.scanner.ScanResult;
 
 public class ThingyDevice extends Device {
@@ -12,5 +14,9 @@ public class ThingyDevice extends Device {
 
     public ThingyDevice(ScanResult scanResult) {
         super(scanResult);
+    }
+
+    public ThingyDevice(BluetoothDevice device, int rssi) {
+        super(device,rssi,THINGY_TYPE);
     }
 }

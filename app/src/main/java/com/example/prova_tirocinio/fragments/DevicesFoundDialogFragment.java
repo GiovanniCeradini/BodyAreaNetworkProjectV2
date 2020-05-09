@@ -6,6 +6,7 @@ import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.ParcelUuid;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -39,9 +40,9 @@ import no.nordicsemi.android.support.v18.scanner.ScanSettings;
 import no.nordicsemi.android.thingylib.utils.ThingyUtils;
 
 
-public class DevicesFoundDialogFragment extends AppCompatDialogFragment {
+public class DevicesFoundDialogFragment extends AppCompatDialogFragment implements AdapterDialogFragment.onDeviceListener{
 
-    private static final String TAG = "DialogTesting";
+    private static final String TAG = "DevicesFoundDialogFragm";
     private final static long SCAN_DURATION = 8000;
     private final static int REQUEST_PERMISSION_REQ_CODE = 76;
     private final static ParcelUuid parcelThingyUuid=new ParcelUuid(ThingyUtils.THINGY_BASE_UUID);
@@ -66,12 +67,15 @@ public class DevicesFoundDialogFragment extends AppCompatDialogFragment {
 
         mRecyclerView=mBinding.recyclerView;
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        mAdapter=new AdapterDialogFragment(Device.get10DevicesForTesting());
+//        mAdapter=new AdapterDialogFragment(Device.get10DevicesForTesting(),this);
+        mAdapter=new AdapterDialogFragment(mDevices,this);
         mRecyclerView.setAdapter(mAdapter);
 
         mProgressBar = mBinding.progressBar;
         mProgressBar.setIndeterminate(true);
         mProgressBar.setVisibility(View.INVISIBLE);
+
+        startScan();
 
         return v;
 
@@ -184,6 +188,12 @@ public class DevicesFoundDialogFragment extends AppCompatDialogFragment {
             }
         }
 
+    @Override
+    public void onDeviceClick(int position) {
+        Log.d(TAG, "onDeviceClick: 1");
+//        MainFragment.addDeviceToRecyclerView(mDevices.get(position));
+        dismiss();
+    }
 }
 
 

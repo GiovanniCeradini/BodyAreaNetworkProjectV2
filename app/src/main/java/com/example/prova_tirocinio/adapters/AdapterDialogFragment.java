@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.prova_tirocinio.databinding.ThingyItemBinding;
 import com.example.prova_tirocinio.databinding.WagooItemBinding;
 import com.example.prova_tirocinio.databinding.WatchItemBinding;
+import com.example.prova_tirocinio.fragments.MainFragment;
 import com.example.prova_tirocinio.objects.Device;
 import com.example.prova_tirocinio.objects.ThingyDevice;
 import com.example.prova_tirocinio.objects.WagooDevice;
@@ -33,7 +34,13 @@ public class AdapterDialogFragment extends RecyclerView.Adapter<RecyclerView.Vie
     private static final int TYPE_WATCH = 3;
 
     private List<Device> mDevices;
+    private onDeviceListener mOnDeviceListener;
 //    private DeviceConnectedClickListener listener;
+
+    public AdapterDialogFragment(List<Device> list, onDeviceListener onDeviceListener){
+        this.mDevices=list;
+        this.mOnDeviceListener=onDeviceListener;
+    }
 
     public AdapterDialogFragment(List<Device> list){
         this.mDevices=list;
@@ -70,7 +77,7 @@ public class AdapterDialogFragment extends RecyclerView.Adapter<RecyclerView.Vie
         else {
             LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
             WatchItemBinding watchBinding = WatchItemBinding.inflate(layoutInflater, parent, false);
-            return new WatchViewHolder(watchBinding);
+            return new WatchViewHolder(watchBinding,mOnDeviceListener);
         }
     }
 
@@ -225,12 +232,19 @@ public class AdapterDialogFragment extends RecyclerView.Adapter<RecyclerView.Vie
 
         private Device mWatchDevice;
         private WatchItemBinding mWatchItemBinding;
+        private onDeviceListener onDeviceListener;
 
 
 
-        public WatchViewHolder(WatchItemBinding binding) {
+        public WatchViewHolder(WatchItemBinding binding, onDeviceListener listener) {
             super(binding.getRoot());
             this.mWatchItemBinding = binding;
+            onDeviceListener=listener;
+
+            /**
+             * impostando il listener al viewholder
+             */
+            itemView.setOnClickListener(this);
         }
 
         public void bind(Device watchDevice) {
@@ -242,13 +256,21 @@ public class AdapterDialogFragment extends RecyclerView.Adapter<RecyclerView.Vie
 
         @Override
         public void onClick(View view) {
-
+            onDeviceListener.onDeviceClick(getAdapterPosition());
         }
 
         @Override
         public boolean onLongClick(View view) {
             return false;
         }
+    }
+
+    /**
+    Interfaccia per l'onClick sul singolo item
+     */
+
+    public interface onDeviceListener{
+        void onDeviceClick(int position);
     }
 
 

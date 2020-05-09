@@ -18,7 +18,7 @@ public class Device {
     private String mName;
     private int mType;
     private BluetoothDevice mBluetoothDevice;
-//    private int rssi;
+    private int mRssi;
 
     public Device(String name, int type){
         this.mName=name;
@@ -31,12 +31,22 @@ public class Device {
 //        this.rssi = scanResult.getRssi();
     }
 
+    public Device(BluetoothDevice bluetoothDevice, int rssi, int type){
+        this.mBluetoothDevice=bluetoothDevice;
+        this.mRssi=rssi;
+        this.mType=type;
+    }
+
     public void setName(String name) {
         this.mName = name;
     }
 
     public void setType(int type) {
         this.mType = type;
+    }
+
+    public void setRssi(int rssi) {
+        this.mRssi = rssi;
     }
 
     public String getName() {
@@ -46,6 +56,12 @@ public class Device {
     public int getType() {
         return mType;
     }
+
+    public int getRssi() {
+        return mRssi;
+    }
+
+    public String getAddress(){return this.mBluetoothDevice.getAddress();}
 
     /**
      *

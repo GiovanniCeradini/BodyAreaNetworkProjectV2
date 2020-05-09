@@ -3,4 +3,6 @@
     <string name="action_settings">Settings</string>
     <string name="scanner_subtitle_not_bonded">AVAILABLE DEVICES:</string>
     <string name="rationale_permission_denied">Permission denied.</string>
+
+    <string name="CLIENT_CHARACTERISTIC_CONFIG">00002902-0000-1000-8000-00805f9b34fb"</string>
 </resources>

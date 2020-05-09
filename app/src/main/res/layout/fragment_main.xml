@@ -5,12 +5,30 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:layout_width="wrap_content"
+        style="@style/Widget.ScannerSubtitle"
+        android:layout_width="match_parent"
+        android:id="@+id/title_avaiable"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
+        android:layout_below="@+id/progress_bar"
+        android:layout_marginLeft="?dialogPreferredPadding"
+        android:text="@string/scanner_subtitle_not_bonded"/>
+
+
+    <ScrollView
+        android:id="@+id/scroll_dev_discovered"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         >
 
-    </TextView>
+        <androidx.recyclerview.widget.RecyclerView
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/recycler_view"
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            />
+
+    </ScrollView>
+
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
