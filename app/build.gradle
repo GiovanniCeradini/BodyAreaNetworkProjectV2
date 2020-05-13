@@ -39,8 +39,8 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
-    compile project(path: ':thingylib')
-    compile project(path: ':wgcom')
+    implementation project(path: ':thingylib')
+    implementation project(path: ':wgcom')
     implementation 'androidx.recyclerview:recyclerview:1.2.0-alpha01'
     implementation 'no.nordicsemi.android.support.v18:scanner:1.4.0'
 }

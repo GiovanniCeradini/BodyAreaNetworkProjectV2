@@ -27,7 +27,7 @@ import no.nordicsemi.android.thingylib.utils.ThingyUtils;
 /**
  * Prova Holder e Adapter Per Recycler View dello Scanner dei Thingy.
  */
-public class AdapterDialogFragment extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public class DevicesAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private static final int TYPE_THINGY = 1;
     private static final int TYPE_WAGOO = 2;
@@ -37,12 +37,12 @@ public class AdapterDialogFragment extends RecyclerView.Adapter<RecyclerView.Vie
     private onDeviceListener mOnDeviceListener;
 //    private DeviceConnectedClickListener listener;
 
-    public AdapterDialogFragment(List<Device> list, onDeviceListener onDeviceListener){
+    public DevicesAdapter(List<Device> list, onDeviceListener onDeviceListener){
         this.mDevices=list;
         this.mOnDeviceListener=onDeviceListener;
     }
 
-    public AdapterDialogFragment(List<Device> list){
+    public DevicesAdapter(List<Device> list){
         this.mDevices=list;
     }
 
@@ -148,6 +148,7 @@ public class AdapterDialogFragment extends RecyclerView.Adapter<RecyclerView.Vie
             }
         return null;
     }
+
 
 
     /**

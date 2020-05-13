@@ -2,6 +2,11 @@ package com.example.prova_tirocinio.interfaces;
 
 import com.example.prova_tirocinio.objects.Device;
 
+/**
+ * Not yet used
+ */
+
+
 public interface ScannerFragmentListener {
 
     /**

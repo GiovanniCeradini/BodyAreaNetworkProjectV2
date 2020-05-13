@@ -2,18 +2,22 @@ package com.example.prova_tirocinio;
 
 import android.Manifest;
 import android.bluetooth.BluetoothAdapter;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.AttributeSet;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
-import com.example.prova_tirocinio.Ble_stuff.ScannerActivity;
 import com.example.prova_tirocinio.databinding.ActivityMainBinding;
 import com.example.prova_tirocinio.fragments.MainFragment;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -24,7 +28,6 @@ public class MainActivity extends AppCompatActivity{
     private ActivityMainBinding mainBinding;
 
     private BluetoothAdapter mBluetoothAdapter  = null;
-    private final static int REQUEST_PERMISSION_REQ_CODE = 76; // any 8-bit number
     public static final int REQUEST_BT_PERMISSIONS = 0;
     public static final int REQUEST_BT_ENABLE = 1;
 
@@ -54,7 +57,7 @@ public class MainActivity extends AppCompatActivity{
         });
 
         fm.addOnBackStackChangedListener(() -> {
-            if (fm.getBackStackEntryCount() == 0) {
+            if (fm.getBackStackEntryCount() == 1) {
                 fabAddDevice.show();
 //                getSupportActionBar().setTitle("Signal Server - Paziente");
                 getSupportActionBar().setDisplayHomeAsUpEnabled(false);

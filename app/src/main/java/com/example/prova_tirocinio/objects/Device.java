@@ -28,7 +28,6 @@ public class Device {
     public Device(ScanResult scanResult) {
         mBluetoothDevice = scanResult.getDevice();
         this.mName = scanResult.getScanRecord() != null ? scanResult.getScanRecord().getDeviceName() : null;
-//        this.rssi = scanResult.getRssi();
     }
 
     public Device(BluetoothDevice bluetoothDevice, int rssi, int type){
@@ -90,6 +89,19 @@ public class Device {
         list.add(new Device("Wagoo8", 2));
         list.add(new Device("Watch9", 3));
         list.add(new Device("Thingy10", 1));
+
+        return list;
+
+    }
+
+    public static List<Device> get3DevicesForTesting(){
+        //1 Thingy, 2 Wagoo, 3 SmartWatch
+
+        List <Device> list =new ArrayList<>();
+
+        list.add(new Device("Thingy1", 1));
+        list.add(new Device("Wagoo2", 2));
+        list.add(new Device("Watch3", 3));
 
         return list;
 

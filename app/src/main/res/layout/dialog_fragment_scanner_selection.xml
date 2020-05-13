@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+<RelativeLayout
+    android:id="@+id/scanner_relative_layout"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+        android:layout_alignParentTop="true"
+
+        />
+
+<!--    <TextView-->
+<!--        style="@style/Widget.ScannerSubtitle"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:id="@+id/title_avaiable"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_below="@+id/progress_bar"-->
+<!--        android:layout_marginLeft="?dialogPreferredPadding"-->
+<!--        android:text="@string/scanner_subtitle_not_bonded"/>-->
+
+    <ScrollView
+        android:id="@+id/scroll_dev_discovered"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/title_avaiable"
+        >
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_dev_discovered"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:listitem="@layout/thingy_item"
+            >
+
+        </androidx.recyclerview.widget.RecyclerView>
+
+    </ScrollView>
+</RelativeLayout>
+</layout>

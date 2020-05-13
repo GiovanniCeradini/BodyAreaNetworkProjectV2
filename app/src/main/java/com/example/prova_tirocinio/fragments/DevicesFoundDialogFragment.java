@@ -20,12 +20,11 @@ import androidx.appcompat.app.AppCompatDialogFragment;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.databinding.DataBindingUtil;
-import androidx.fragment.app.DialogFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.prova_tirocinio.R;
-import com.example.prova_tirocinio.adapters.AdapterDialogFragment;
+import com.example.prova_tirocinio.adapters.DevicesAdapter;
 import com.example.prova_tirocinio.databinding.DialogFragmentDevicesFoundBinding;
 import com.example.prova_tirocinio.objects.Device;
 
@@ -40,7 +39,7 @@ import no.nordicsemi.android.support.v18.scanner.ScanSettings;
 import no.nordicsemi.android.thingylib.utils.ThingyUtils;
 
 
-public class DevicesFoundDialogFragment extends AppCompatDialogFragment implements AdapterDialogFragment.onDeviceListener{
+public class DevicesFoundDialogFragment extends AppCompatDialogFragment implements DevicesAdapter.onDeviceListener{
 
     private static final String TAG = "DevicesFoundDialogFragm";
     private final static long SCAN_DURATION = 8000;
@@ -52,7 +51,7 @@ public class DevicesFoundDialogFragment extends AppCompatDialogFragment implemen
 
     private DialogFragmentDevicesFoundBinding mBinding;
     private RecyclerView mRecyclerView;
-    private AdapterDialogFragment mAdapter;
+    private DevicesAdapter mAdapter;
     private ProgressBar mProgressBar;
 
     private ParcelUuid mUuid;
@@ -67,8 +66,8 @@ public class DevicesFoundDialogFragment extends AppCompatDialogFragment implemen
 
         mRecyclerView=mBinding.recyclerView;
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-//        mAdapter=new AdapterDialogFragment(Device.get10DevicesForTesting(),this);
-        mAdapter=new AdapterDialogFragment(mDevices,this);
+//        mAdapter=new DevicesAdapter(Device.get10DevicesForTesting(),this);
+        mAdapter=new DevicesAdapter(mDevices,this);
         mRecyclerView.setAdapter(mAdapter);
 
         mProgressBar = mBinding.progressBar;

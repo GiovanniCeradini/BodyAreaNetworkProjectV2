@@ -12,10 +12,10 @@ import android.os.Handler;
 import android.os.ParcelUuid;
 import android.util.Log;
 
+import com.example.prova_tirocinio.ScannerActivity;
+
 import java.util.ArrayList;
 import java.util.List;
-
-import no.nordicsemi.android.thingylib.utils.ThingyUtils;
 
 /**
  * Implementazione dello scannner per i dispositivi BLE, implementazione statica dello scanner
@@ -36,8 +36,6 @@ public class Scanner_BTLE {
 
     private static Scanner_BTLE instance=null;
 
-
-
     public static Scanner_BTLE getInstance(ScannerActivity mScannerActivity){
         if(instance==null)
             instance= new Scanner_BTLE(mScannerActivity);
@@ -53,13 +51,13 @@ public class Scanner_BTLE {
 
         mBluetoothAdapter = bluetoothManager.getAdapter();
         this.mBluetoothLeScanner = mBluetoothAdapter.getBluetoothLeScanner();
-
-
     }
 
 
     public void startScan(long scanDuration, int scanMode, List<ParcelUuid> uuids) {
+
         Log.d(TAG, "startScan: ");
+
         // Since Android 6.0 we need to obtain either Manifest.permission.ACCESS_COARSE_LOCATION or Manifest.permission.ACCESS_FINE_LOCATION to be able to scan for
         // Bluetooth LE devices. This is related to beacons as proximity devices.
         // On API older than Marshmallow the following code does nothing.
@@ -73,6 +71,7 @@ public class Scanner_BTLE {
 //            return;
 //        }
 
+
         final ScanSettings settings = new ScanSettings.Builder()
                 .setScanMode(scanMode).setReportDelay(750).build();
         //.setUseHardwareBatchingIfSupported(false).setUseHardwareFilteringIfSupported(false)
@@ -82,15 +81,16 @@ public class Scanner_BTLE {
         mBluetoothLeScanner.startScan(filters,settings,scanCallback);
 
         this.mIsScanning = true;
+
         mHandler.postDelayed(new Runnable() {
             @Override
             public void run() {
                 if (mIsScanning) {
                     stopScan();
-//                    mScannerActivity.showScanningResultInDialogFragment();
                 }
             }
         }, scanDuration);
+
     }
     public void stopScan() {
         if (this.mIsScanning) {
@@ -109,11 +109,10 @@ public class Scanner_BTLE {
 
         @Override
         public void onBatchScanResults(List<ScanResult> results) {
-        //funziona
             for(ScanResult result: results){
                 List<ParcelUuid> uuids = result.getScanRecord().getServiceUuids();
-                Log.d(TAG, "UUID "+uuids.get(0)+" onBatchScanResult: "+result.getDevice().getAddress()+"\nParcel"+ThingyUtils.THINGY_BASE_UUID);
-                mScannerActivity.updateRecyclerView(result);
+                Log.d(TAG, "UUID "+uuids.get(0)+" onBatchScanResult: "+result.getDevice().getAddress());
+                mScannerActivity.updateRecyclerViewDialogFragment(result);
             }
         }
 

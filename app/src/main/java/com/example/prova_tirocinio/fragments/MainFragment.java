@@ -1,6 +1,5 @@
 package com.example.prova_tirocinio.fragments;
 
-import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,17 +15,15 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.prova_tirocinio.R;
-import com.example.prova_tirocinio.adapters.AdapterDialogFragment;
+import com.example.prova_tirocinio.adapters.DevicesAdapter;
 import com.example.prova_tirocinio.databinding.FragmentMainBinding;
 import com.example.prova_tirocinio.objects.Device;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-import java.util.ArrayList;
 import java.util.List;
 
 
 
-public class MainFragment extends Fragment implements AdapterDialogFragment.onDeviceListener{
+public class MainFragment extends Fragment implements DevicesAdapter.onDeviceListener{
 
     private static final String TAG = "FragmentTestingRecViewP";
 
@@ -35,7 +32,7 @@ public class MainFragment extends Fragment implements AdapterDialogFragment.onDe
 
     private List<Device> mSelectedDevices;
     private RecyclerView mDevicesSelectedRecyclerView;
-    private AdapterDialogFragment mSelectedDevicesAdapter;
+    private DevicesAdapter mSelectedDevicesAdapter;
 
 
 
@@ -65,7 +62,7 @@ public class MainFragment extends Fragment implements AdapterDialogFragment.onDe
         mDevicesSelectedRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         //TODO perchè c'è mThingySdkManager, indagare
 //        mDevicesSelectedAdapter = new DevicesSelectedAdapter(mDevicesSelected, mThingySdkManager, this);
-        mSelectedDevicesAdapter = new AdapterDialogFragment(mSelectedDevices,this);
+        mSelectedDevicesAdapter = new DevicesAdapter(mSelectedDevices,this);
         mDevicesSelectedRecyclerView.setAdapter(mSelectedDevicesAdapter);
 
 

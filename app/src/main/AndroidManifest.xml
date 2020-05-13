@@ -40,7 +40,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Ble_stuff.ScannerActivity"
+            android:name=".ScannerActivity"
             android:theme="@style/AppTheme.NoActionBar">
 
         </activity>
